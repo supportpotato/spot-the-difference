@@ -1,5 +1,5 @@
 // ========== CONFIGURATION ==========
-// Add your image pairs and their differences here
+// Replace these with your actual image names and difference data!
 const levels = [
   {
     images: {
@@ -7,10 +7,8 @@ const levels = [
       b: 'assets/level1_b.jpeg'
     },
     differences: [
-      // Each difference is a circle: { x, y, radius }
-      // Coordinates are relative to imageB (canvas), in pixels
-      { x: 120, y: 80, radius: 25 },
-      { x: 300, y: 220, radius: 20 }
+      // Example: { x: 120, y: 80, radius: 25 },
+      // Add your difference data here
     ]
   }
   // Add more levels as needed
@@ -20,25 +18,44 @@ const levels = [
 
 let currentLevel = 0;
 let found = [];
+const imageA = document.getElementById('imageA');
 const imageB = document.getElementById('imageB');
 const canvasB = document.getElementById('canvasB');
 const feedback = document.getElementById('feedback');
 const nextLevelBtn = document.getElementById('next-level');
+
+// Helper: adjust canvas size to match image display size
+function resizeCanvasToImage() {
+  const img = imageB;
+  const canvas = canvasB;
+  // Set canvas internal size to natural image size
+  canvas.width = img.naturalWidth;
+  canvas.height = img.naturalHeight;
+  // Set canvas display size to match rendered image size
+  canvas.style.width = img.clientWidth + "px";
+  canvas.style.height = img.clientHeight + "px";
+  drawFound();
+}
+
+// Redraw canvas on window resize or image load
+window.addEventListener('resize', resizeCanvasToImage);
 
 function loadLevel(levelIdx) {
   found = [];
   feedback.textContent = '';
   nextLevelBtn.style.display = 'none';
   const level = levels[levelIdx];
-  document.getElementById('imageA').src = level.images.a;
+  imageA.src = level.images.a;
   imageB.src = level.images.b;
-  imageB.onload = () => {
-    canvasB.width = imageB.width;
-    canvasB.height = imageB.height;
-    canvasB.style.width = imageB.style.width;
-    canvasB.style.height = imageB.style.height;
+  if (imageB.complete) {
+    resizeCanvasToImage();
     clearCanvas();
-  };
+  } else {
+    imageB.onload = () => {
+      resizeCanvasToImage();
+      clearCanvas();
+    };
+  }
 }
 
 function clearCanvas() {
