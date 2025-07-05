@@ -67,6 +67,13 @@ function drawFound() {
   const ctx = canvasB.getContext('2d');
   clearCanvas();
   const level = levels[currentLevel];
+  // Hide canvas if there are no differences
+  if (!level.differences || level.differences.length === 0) {
+    canvasB.style.display = "none";
+    return;
+  } else {
+    canvasB.style.display = "block";
+  }
   found.forEach(idx => {
     const diff = level.differences[idx];
     ctx.beginPath();
