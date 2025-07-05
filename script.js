@@ -9,6 +9,8 @@ const levels = [
     differences: [
       // Example: { x: 120, y: 80, radius: 25 },
       // Add your difference data here
+      // For testing, let's add a dummy difference if it's empty
+      { x: 100, y: 100, radius: 20 }
     ]
   }
   // Add more levels as needed
@@ -28,12 +30,23 @@ const nextLevelBtn = document.getElementById('next-level');
 function resizeCanvasToImage() {
   const img = imageB;
   const canvas = canvasB;
+
+  // IMPORTANT: Ensure image has loaded and has natural dimensions
+  if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+      console.warn("Image B natural dimensions are 0. Canvas not resized.");
+      return; // Exit if image dimensions aren't ready
+  }
+
   // Set canvas internal size to natural image size
   canvas.width = img.naturalWidth;
   canvas.height = img.naturalHeight;
+
   // Set canvas display size to match rendered image size
-  canvas.style.width = img.clientWidth + "px";
-  canvas.style.height = img.clientHeight + "px";
+  // Use offsetWidth/offsetHeight for the currently rendered size of the image element
+  canvas.style.width = img.offsetWidth + "px";
+  canvas.style.height = img.offsetHeight + "px";
+
+  console.log(`Canvas resized to: ${canvas.width}x${canvas.height} (internal), ${canvas.style.width}x${canvas.style.height} (display)`);
   drawFound();
 }
 
@@ -45,16 +58,38 @@ function loadLevel(levelIdx) {
   feedback.textContent = '';
   nextLevelBtn.style.display = 'none';
   const level = levels[levelIdx];
+
+  // Set imageA source directly (no canvas dependency)
   imageA.src = level.images.a;
-  imageB.src = level.images.b;
-  if (imageB.complete) {
-    resizeCanvasToImage();
+
+  // --- Crucial change for imageB and canvas ---
+  // 1. Clear any previous onload handlers to prevent multiple calls
+  imageB.onload = null;
+
+  // 2. Assign the onload handler FIRST
+  imageB.onload = () => {
+    console.log("Image B loaded!");
+    resizeCanvasToImage(); // Now naturalWidth/Height should be available
     clearCanvas();
+    drawFound(); // Redraw differences after loading and clearing
+  };
+
+  // 3. Set the imageB source (this triggers the load)
+  imageB.src = level.images.b;
+
+  // 4. If the image is already complete (e.g., from cache), manually trigger the onload logic
+  // This handles the race condition where onload might not fire if image loads too fast
+  if (imageB.complete) {
+      console.log("Image B already complete (from cache or very fast load). Manually triggering resize.");
+      imageB.onload(); // Call the handler directly
+  }
+  // --- End crucial change ---
+
+  // Ensure canvas visibility based on differences
+  if (!level.differences || level.differences.length === 0) {
+    canvasB.style.display = "none";
   } else {
-    imageB.onload = () => {
-      resizeCanvasToImage();
-      clearCanvas();
-    };
+    canvasB.style.display = "block";
   }
 }
 
@@ -65,15 +100,18 @@ function clearCanvas() {
 
 function drawFound() {
   const ctx = canvasB.getContext('2d');
-  clearCanvas();
+  clearCanvas(); // Always clear before redrawing
+
   const level = levels[currentLevel];
-  // Hide canvas if there are no differences
+
+  // If no differences, hide canvas. Otherwise, ensure it's visible.
   if (!level.differences || level.differences.length === 0) {
     canvasB.style.display = "none";
     return;
   } else {
     canvasB.style.display = "block";
   }
+
   found.forEach(idx => {
     const diff = level.differences[idx];
     ctx.beginPath();
@@ -86,12 +124,23 @@ function drawFound() {
 
 canvasB.addEventListener('click', function(e) {
   const rect = canvasB.getBoundingClientRect();
+  // Ensure canvas dimensions are not zero before calculating scale
+  if (canvasB.width === 0 || canvasB.height === 0) {
+      console.warn("Canvas dimensions are 0, cannot process click.");
+      return;
+  }
   const scaleX = canvasB.width / rect.width;
   const scaleY = canvasB.height / rect.height;
   const x = (e.clientX - rect.left) * scaleX;
   const y = (e.clientY - rect.top) * scaleY;
 
   const level = levels[currentLevel];
+  // If no differences defined, no clicks can be registered
+  if (!level.differences || level.differences.length === 0) {
+      feedback.textContent = 'No differences defined for this level.';
+      return;
+  }
+
   let hit = false;
   level.differences.forEach((diff, idx) => {
     if (!found.includes(idx)) {
@@ -117,7 +166,12 @@ canvasB.addEventListener('click', function(e) {
 
 nextLevelBtn.addEventListener('click', () => {
   currentLevel++;
-  loadLevel(currentLevel);
+  if (currentLevel < levels.length) {
+    loadLevel(currentLevel);
+  } else {
+    feedback.textContent = 'You completed all levels!';
+    nextLevelBtn.style.display = 'none';
+  }
 });
 
 // Initial load
