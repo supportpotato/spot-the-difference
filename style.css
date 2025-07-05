@@ -23,7 +23,7 @@ h1 {
   position: relative;
   margin: 10px;
   width: 90vw; /* Still responsive, takes 90% of viewport width */
-  max-width: 800px; /* <--- INCREASED MAX-WIDTH HERE (e.g., from 400px to 800px) */
+  max-width: 850px; /* <--- INCREASED MAX-WIDTH HERE (e.g., from 400px to 850px) */
   flex: 1 1 400px; /* Allows containers to grow/shrink, minimum base size */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   border-radius: 8px; /* Rounded corners for the container */
