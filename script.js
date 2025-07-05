@@ -150,6 +150,9 @@ function drawFound() {
 // Event listener for clicks on the canvas (imageB)
 // *** TEMPORARILY MODIFIED FOR COORDINATE FINDING ***
 canvasB.addEventListener('click', function(e) {
+  // --- NEW: Log to confirm click event is detected ---
+  console.log("Click event detected on canvasB!");
+
   const rect = canvasB.getBoundingClientRect(); // Get the size and position of the canvas on screen
 
   // Check if canvas dimensions are valid to prevent division by zero
