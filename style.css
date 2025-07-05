@@ -1,0 +1,50 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f6f8fa;
+  margin: 0;
+  padding: 0;
+}
+
+#game-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.image-container {
+  position: relative;
+  margin: 0 20px;
+}
+
+.image-container img, .image-container canvas {
+  width: 4000px;
+  height: 3000px;
+  display: block;
+  border: 2px solid #222;
+  background: #fff;
+}
+
+.image-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+#feedback {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #1565c0;
+}
+
+#next-level {
+  margin-top: 20px;
+  font-size: 1.1em;
+  padding: 10px 20px;
+  background: #1565c0;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
