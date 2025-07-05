@@ -36,7 +36,6 @@ body {
   display: block;
   border: 2px solid #222; /* Keep border if desired */
   /* Remove background from canvas so it's transparent */
-  background: transparent; /* Explicitly make canvas background transparent */
   position: absolute;
   top: 0;
   left: 0;
