@@ -8,18 +8,23 @@ body {
 
 #game-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
 }
 
 .image-container {
   position: relative;
-  margin: 0 20px;
+  margin: 10px;
+  width: 90vw;
+  max-width: 400px;
+  flex: 1 1 300px;
 }
 
-.image-container img, .image-container canvas {
-  width: 4000px;
-  height: 3000px;
+.image-container img,
+.image-container canvas {
+  width: 100%;
+  height: auto;
   display: block;
   border: 2px solid #222;
   background: #fff;
@@ -30,6 +35,16 @@ body {
   top: 0;
   left: 0;
   pointer-events: none;
+}
+
+@media (min-width: 700px) {
+  #game-container {
+    flex-wrap: nowrap;
+  }
+  .image-container {
+    width: 400px;
+    margin: 0 20px;
+  }
 }
 
 #feedback {
