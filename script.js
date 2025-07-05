@@ -1,4 +1,8 @@
 // ========== CONFIGURATION ==========
+console.log("script.js is running!"); // Add this line here
+// Replace these with your actual image names and difference data!
+const levels = [
+  // ... rest of your code
 // Replace these with your actual image names and difference data!
 const levels = [
   {
