@@ -15,7 +15,28 @@ const levels = [
   }
   // Add more levels as needed
 ];
+// find differences end line 39 //
+// In script.js
+canvasB.addEventListener('click', function(e) {
+  const rect = canvasB.getBoundingClientRect();
+  // These scales adjust for the image being displayed smaller/larger than its natural size
+  const scaleX = canvasB.width / rect.width;
+  const scaleY = canvasB.height / rect.height;
+  // Calculate the click coordinates relative to the image's natural pixel size
+  const x = (e.clientX - rect.left) * scaleX;
+  const y = (e.clientY - rect.top) * scaleY;
 
+  // Log the coordinates to the console
+  console.log(`Clicked at: x=${Math.round(x)}, y=${Math.round(y)}`);
+
+  // IMPORTANT: Temporarily comment out the rest of your game's click logic
+  // You'll uncomment this after you've collected your coordinates.
+  /*
+  const level = levels[currentLevel];
+  let hit = false;
+  // ... rest of your game logic for checking differences
+  */
+});
 // ========== GAME LOGIC ==========
 
 let currentLevel = 0;
