@@ -40,6 +40,15 @@ const levels = [
 
 let currentLevel = 0;
 let found = []; // Stores the indices of differences that have been found
+let score = 0;
+const scoreDisplay = document.getElementById('score');
+if (dist <= diff.radius) {
+  found.push(idx);
+  hit = true;
+  score += 10; // Add 10 points for each correct click
+  scoreDisplay.textContent = `Score: ${score}`;
+}
+
 const imageA = document.getElementById('imageA');
 const imageB = document.getElementById('imageB');
 const canvasB = document.getElementById('canvasB');
