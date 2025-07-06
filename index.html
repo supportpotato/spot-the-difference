@@ -12,11 +12,9 @@
     <div class="image-container">
       <img id="imageA" src="assets/level1_a.jpeg" alt="Image A">
     </div>
-    <div class="image-container">
-      <img id="imageB" src="assets/level1_b.jpeg" alt="Image B">
-      <canvas id="canvasB"<div class="image-container">
-  <img id="imageB" src="assets/level1_b.jpeg" alt="Image B">
-  <canvas id="canvasB" style="pointer-events: auto; z-index: 1; background-color: transparent;"></canvas>
+    <div class="image-container" style="position: relative;">
+      <img id="imageB" src="assets/level1_b.jpeg" alt="Image B" style="display: block; width: 100%;">
+      <canvas id="canvasB" style="position: absolute; top: 0; left: 0; pointer-events: auto; z-index: 1;"></canvas>
     </div>
   </div>
   <div id="feedback"></div>
