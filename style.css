@@ -7,7 +7,7 @@ body {
 }
 
 h1 {
-  margin-top: 20px; /* Add some top margin for the title */
+  margin-top: 20px;
   color: #333;
 }
 
@@ -16,73 +16,75 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
-  gap: 20px; /* Add some gap between image containers */
+  gap: 20px;
 }
 
 .image-container {
   position: relative;
   margin: 10px;
-  width: 90vw; /* Still responsive, takes 90% of viewport width */
-  max-width: 900px; /* <--- INCREASED MAX-WIDTH HERE (e.g., from 400px to 900px) */
-  flex: 1 1 400px; /* Allows containers to grow/shrink, minimum base size */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  border-radius: 8px; /* Rounded corners for the container */
-  overflow: hidden; /* Ensures image/canvas corners are also rounded within the container */
+  width: 90vw;
+  max-width: 600px;
+  flex: 1 1 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .image-container img,
 .image-container canvas {
   width: 100%;
-  height: auto; /* Maintain aspect ratio */
+  height: auto;
   display: block;
-  border: 2px solid #222; /* Keep border if desired */
-  border-radius: 8px; /* Rounded corners for images/canvas */
-  /* Ensure no background is set on img or canvas to avoid covering images */
-  /* background: transparent; */ /* This line is optional as default is transparent */
+  border: 2px solid #222;
+  border-radius: 8px;
 }
 
 .image-container canvas {
   position: absolute;
   top: 0;
   left: 0;
-  pointer-events: auto; /* Allows clicks to pass through to the image below */
+  pointer-events: auto;
+  background-color: transparent; /* <--- ADDED THIS LINE */
+  z-index: 1; /* <--- ADDED THIS LINE (ensures it's above the image) */
 }
 
-/* Media query for larger screens (e.g., desktop) */
-@media (min-width: 700px) { /* Adjust breakpoint if needed */
+@media (min-width: 700px) {
   #game-container {
-    flex-wrap: nowrap; /* Keep images in a single row */
+    flex-wrap: nowrap;
   }
   .image-container {
-    width: 600px; /* <--- INCREASED FIXED WIDTH FOR DESKTOP HERE (e.g., from 400px to 600px) */
-    margin: 0 20px; /* Adjust margin for spacing */
+    width: 600px;
+    margin: 0 20px;
   }
 }
 
 #feedback {
   margin-top: 20px;
-  font-size: 1.4em; /* Slightly larger font */
+  font-size: 1.4em;
   color: #1565c0;
   font-weight: bold;
 }
 
 #next-level {
-  margin-top: 30px; /* More space above button */
-  font-size: 1.2em; /* Slightly larger font */
-  padding: 12px 25px; /* More padding for a bigger button */
+  margin-top: 30px;
+  font-size: 1.2em;
+  padding: 12px 25px;
   background: #1565c0;
   color: #fff;
   border: none;
-  border-radius: 8px; /* Slightly more rounded corners */
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 #next-level:hover {
-  background: #0d47a1; /* Darker blue on hover */
-  transform: translateY(-2px); /* Slight lift effect */
+  background: #0d47a1;
+  transform: translateY(-2px);
 }
 
+#next-level:active {
+  transform: translateY(0);
+}
 #next-level:active {
   transform: translateY(0); /* Press effect */
 }
