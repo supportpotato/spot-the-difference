@@ -48,6 +48,11 @@ if (dist <= diff.radius) {
   score += 10; // Add 10 points for each correct click
   scoreDisplay.textContent = `Score: ${score}`;
 }
+if (found.length === level.differences.length) {
+  feedback.textContent = 'Level complete!';
+  document.getElementById('final-message').style.display = 'block';
+  nextLevelBtn.style.display = (currentLevel < levels.length - 1) ? 'inline-block' : 'none';
+}
 
 const imageA = document.getElementById('imageA');
 const imageB = document.getElementById('imageB');
