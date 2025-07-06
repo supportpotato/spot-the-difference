@@ -43,7 +43,7 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  pointer-events: auto;
+  pointer-events: none;
   background-color: transparent; /* <--- ADDED THIS LINE */
   z-index: 1; /* <--- ADDED THIS LINE (ensures it's above the image) */
 }
