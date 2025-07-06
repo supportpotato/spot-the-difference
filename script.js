@@ -63,8 +63,8 @@ function resizeCanvasToImage() {
 
   // Set canvas display size to match rendered image size (CSS-controlled size)
   // offsetWidth/offsetHeight give the actual rendered size of the HTML element
-  canvas.style.width = img.offsetWidth + "px";
-  canvas.style.height = img.offsetHeight + "px";
+  canvas.style.width = img.offsetWidth + 1) + "px";
+  canvas.style.height = img.offsetHeight + 1) + "px";
 
   console.log(`Canvas resized to: ${canvas.width}x${canvas.height} (internal), ${canvas.style.width}x${canvas.style.height} (display)`);
   drawFound(); // Redraw differences after resizing
