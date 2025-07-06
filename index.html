@@ -1,21 +1,31 @@
-<h1>Spot the Difference</h1>
-<div id="score">Score: 0</div>
-<link rel="icon" href="favicon.ico">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spot the Difference Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <h1>Spot the Difference</h1>
+  <div id="score">Score: 0</div>
 
-<div id="game-container">
-  <div class="image-container" style="position: relative;">
-    <img id="imageA" src="assets/level1_a.jpeg" alt="Image A" style="width: 100%;">
-    <canvas id="canvasA" style="position: absolute; top: 0; left: 0; pointer-events: auto; z-index: 1;"></canvas>
+  <div id="game-container">
+    <div class="image-container">
+      <img id="imageA" src="assets/level1_a.jpeg" alt="Image A">
+      <canvas id="canvasA"></canvas>
+    </div>
+    <div class="image-container">
+      <img id="imageB" src="assets/level1_b.jpeg" alt="Image B">
+      <canvas id="canvasB"></canvas>
+    </div>
   </div>
 
-  <div class="image-container" style="position: relative;">
-    <img id="imageB" src="assets/level1_b.jpeg" alt="Image B" style="width: 100%;">
-    <canvas id="canvasB" style="position: absolute; top: 0; left: 0; pointer-events: auto; z-index: 1;"></canvas>
-  </div>
-</div>
+  <div id="feedback"></div>
+  <div id="final-message" style="display: none;">You found all the differences!</div>
+  <button id="next-level" style="display: none;">Next Level</button>
 
-<div id="feedback"></div>
-<div id="final-message" style="display: none;">🎉 You found all the differences!</div>
-<button id="next-level" style="display:none;">Next Level</button>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
