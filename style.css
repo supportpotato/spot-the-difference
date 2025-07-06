@@ -43,7 +43,7 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  pointer-events: none;
+  pointer-events: auto;
   background-color: transparent; /* <--- ADDED THIS LINE */
   z-index: 1; /* <--- ADDED THIS LINE (ensures it's above the image) */
 }
@@ -82,9 +82,6 @@ h1 {
   transform: translateY(-2px);
 }
 
-#next-level:active {
-  transform: translateY(0);
-}
 #next-level:active {
   transform: translateY(0); /* Press effect */
 }
