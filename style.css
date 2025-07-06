@@ -44,8 +44,8 @@ h1 {
   top: 0;
   left: 0;
   pointer-events: auto;
-  background-color: transparent; /* <--- ADDED THIS LINE */
-  z-index: 1; /* <--- ADDED THIS LINE (ensures it's above the image) */
+  background-color: transparent;
+  z-index: 1;
 }
 
 @media (min-width: 700px) {
@@ -83,7 +83,7 @@ h1 {
 }
 
 #next-level:active {
-  transform: translateY(0); /* Press effect */
+  transform: translateY(0);
 }
 
 #score {
