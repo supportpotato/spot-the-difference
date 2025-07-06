@@ -88,3 +88,11 @@ h1 {
 #next-level:active {
   transform: translateY(0); /* Press effect */
 }
+
+#score {
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: #2e7d32;
+  font-weight: bold;
+}
+
