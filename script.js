@@ -15,9 +15,22 @@ const levels = [
       // Add your difference data here. Each object represents one clickable difference.
       // For example, if you found a difference at x=250, y=180, and want a 30px radius:
       // { x: 250, y: 180, radius: 30 },
-      { x: 100, y: 100, radius: 20 }, // Dummy difference for initial testing, remove or replace
-      { x: 300, y: 150, radius: 25 },
-      { x: 500, y: 250, radius: 30 }
+      // Make sure to populate this array with ALL your actual differences for level 1!
+      {x=394, y=274, radius: 30},
+      {x=868, y=542, radius: 30},
+      {x=1108, y=268, radius: 30},
+      {x=1402, y=300, radius: 30},
+      {x=1489, y=440, radius: 30},
+      {x=1081, y=575, radius: 30},
+      {x=1070, y=843, radius: 30},
+      {x=1740, y=924, radius: 30},
+      {x=1860, y=1005, radius: 30},
+      {x=2219, y=935, radius: 30},
+      {x=1805, y=1343, radius: 30},
+      {x=950, y=1284, radius: 30},
+      {x=514, y=1193, radius: 30},
+      {x=182, y=1064, radius: 30},
+      {x=263, y=768, radius: 30}
     ]
   }
   // Add more levels as needed
@@ -113,7 +126,6 @@ function clearCanvas() {
 
 /**
  * Draws circles around the differences that have been found.
- * NOTE: For coordinate finding mode, this function's drawing logic is temporarily commented out.
  */
 function drawFound() {
   const ctx = canvasB.getContext('2d');
@@ -132,9 +144,7 @@ function drawFound() {
     console.log("Canvas display set to block (has differences)");
   }
 
-  // TEMPORARILY COMMENTED OUT FOR COORDINATE FINDING MODE:
   // This loop iterates through the 'found' array (which contains indices of found differences)
-  /*
   found.forEach(idx => {
     const diff = level.differences[idx]; // Get the difference object from the current level's data
     ctx.beginPath(); // Start a new drawing path
@@ -144,14 +154,11 @@ function drawFound() {
     ctx.strokeStyle = 'rgba(76, 175, 80, 0.7)'; // Set the color of the circle (green with 70% opacity)
     ctx.stroke(); // Draw the outline of the circle
   });
-  */
 }
 
 // Event listener for clicks on the canvas (imageB)
-// *** TEMPORARILY MODIFIED FOR COORDINATE FINDING ***
 canvasB.addEventListener('click', function(e) {
-  // --- NEW: Log to confirm click event is detected ---
-  console.log("Click event detected on canvasB!");
+  // console.log("Click event detected on canvasB!"); // Temporarily removed for full game logic
 
   const rect = canvasB.getBoundingClientRect(); // Get the size and position of the canvas on screen
 
@@ -169,11 +176,8 @@ canvasB.addEventListener('click', function(e) {
   const x = (e.clientX - rect.left) * scaleX;
   const y = (e.clientY - rect.top) * scaleY;
 
-  // --- TEMPORARY: Log the coordinates to the console ---
-  console.log(`Clicked at: x=${Math.round(x)}, y=${Math.round(y)}`);
+  // console.log(`Clicked at: x=${Math.round(x)}, y=${Math.round(y)}`); // Temporarily removed for full game logic
 
-  // --- TEMPORARILY COMMENTED OUT THE REST OF THE GAME LOGIC ---
-  /*
   const level = levels[currentLevel];
 
   // If no differences are defined for this level, provide feedback and exit
@@ -211,8 +215,6 @@ canvasB.addEventListener('click', function(e) {
   } else {
     feedback.textContent = 'Try again!'; // Incorrect click
   }
-  */
-  // --- END OF TEMPORARILY COMMENTED OUT SECTION ---
 });
 
 // Event listener for the "Next Level" button
