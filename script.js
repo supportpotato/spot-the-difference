@@ -75,12 +75,13 @@ window.onload = () => {
     level.differences.forEach((diff, idx) => {
       if (!found.includes(idx)) {
         const dist = Math.sqrt((x - diff.x) ** 2 + (y - diff.y) ** 2);
-        if (dist <= diff.radius) {
-          found.push(idx);
-          hit = true;
-          score += 10;
-          scoreDisplay.textContent = `Score: ${score}`;
-        }
+      if (dist <= diff.radius) {
+        found.push(idx);
+        hit = true;
+        score += 10;
+        scoreDisplay.textContent = `Score: ${score}`;
+      }
+
       }
     });
 
