@@ -11,12 +11,13 @@ h1 {
   color: #333;
 }
 
-#score {
-  font-size: 1.2em;
-  margin-top: 10px;
-  color: #2e7d32;
-  font-weight: bold;
+#instructions {
+  font-size: 1.1em;
+  color: #555;
+  margin-top: -10px;
+  margin-bottom: 20px;
 }
+
 
 #game-container {
   display: flex;
@@ -50,25 +51,22 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  pointer-events: auto; /* Make sure canvas receives clicks */
+  pointer-events: auto; /* important: to receive clicks */
   background-color: transparent;
   z-index: 1;
-}
-
-@media (min-width: 700px) {
-  #game-container {
-    flex-wrap: nowrap;
-  }
-  .image-container {
-    width: 600px;
-    margin: 0 20px;
-  }
 }
 
 #feedback {
   margin-top: 20px;
   font-size: 1.4em;
   color: #1565c0;
+  font-weight: bold;
+}
+
+#score {
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: #2e7d32;
   font-weight: bold;
 }
 
@@ -90,4 +88,3 @@ h1 {
     transform: scale(1);
   }
 }
-
